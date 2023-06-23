@@ -1,0 +1,24 @@
+h1{
+  cursor: pointer;
+}
+
+.slide-toggle{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main{
+  padding: 5rem;
+  min-height: 500px;
+}
+
+mat-toolbar{
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px){
+  .main{
+    padding: 2rem;
+  }
+}

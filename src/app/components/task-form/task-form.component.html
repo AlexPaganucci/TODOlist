@@ -1,0 +1,25 @@
+<form class="example-form" (submit)="addTask()">
+  <div class="example-container">
+    <mat-form-field class="example-full-width" color="warn">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Ex. Order sushi" [(ngModel)]="newTaskTitle" name="newTaskTitle">
+    </mat-form-field>
+  </div>
+  <div class="example-container">
+    <mat-form-field class="example-full-width" color="warn">
+      <mat-label>Details</mat-label>
+      <textarea matInput placeholder="Write a description of yuor task..." [(ngModel)]="newTaskDetails" name="newTaskDetails"></textarea>
+    </mat-form-field>
+  </div>
+  <div class="example-container">
+    <mat-form-field class="example-full-width" color="warn">
+      <mat-label>Priority</mat-label>
+      <mat-select [(value)]="newTaskPriority">
+        <mat-option value="Low">Low</mat-option>
+        <mat-option value="Medium">Medium</mat-option>
+        <mat-option value="High">High</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <button mat-button type="submit" color="warn">Add Task</button>
+</form>

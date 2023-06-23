@@ -1,0 +1,37 @@
+<h2 id="title-detail">Detail of your task</h2>
+<div id="details" *ngIf="task">
+  <div *ngIf="!editingMode">
+    <p>{{task.title}}</p>
+    <p>{{task.details}}</p>
+    <p>priority: {{task.priority}}</p>
+    <p *ngIf="task.completed">COMPLETED!</p>
+    <p *ngIf="!task.completed">NOT COMPLETED!</p>
+    <button mat-button color="warn" (click)="toggleEditingMode()">Modifica</button>
+  </div>
+  <div *ngIf="editingMode">
+  <form class="example-form" (submit)="toggleEditingMode()">
+    <div class="example-container">
+      <mat-form-field class="example-full-width" color="warn">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Title" [(ngModel)]="task.title" name="title">
+      </mat-form-field>
+    </div>
+    <div class="example-container">
+      <mat-form-field class="example-full-width" color="warn">
+        <mat-label>Details</mat-label>
+        <textarea matInput placeholder="Details" [(ngModel)]="task.details" name="details"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="example-container">
+      <mat-form-field class="example-full-width" color="warn">
+        <mat-label>Priority</mat-label>
+        <mat-select [(value)]="task.priority">
+          <mat-option value="Low">Low</mat-option>
+          <mat-option value="Medium">Medium</mat-option>
+          <mat-option value="High">High</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-button type="submit" color="warn">Save</button>
+  </form>
+</div>

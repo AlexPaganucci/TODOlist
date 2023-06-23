@@ -1,0 +1,50 @@
+<div class="filter">
+  <mat-slide-toggle color="warn" [(ngModel)]="showCompletedTasks" (change)="updateView()">
+    <span>Show Completed Tasks</span>
+  </mat-slide-toggle>
+  <mat-slide-toggle color="warn" [(ngModel)]="showPendingTasks" (change)="updateView()">
+    <span>Show Pending Tasks</span>
+  </mat-slide-toggle>
+</div>
+<div id="list-task" *ngFor="let task of tasks.slice().reverse()">
+  <ng-container *ngIf="showCompletedTasks && task.completed">
+    <div [@cardCreationAnimation]>
+      <mat-card [@cardToggleAnimation]="task.completed.toString()">
+        <span [appDot]="task.priority" class="priority-dot"></span>
+        <mat-card-header>
+          <mat-card-title>{{ task.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions>
+          <mat-slide-toggle color="warn" [(ngModel)]="task.completed" (change)="updateTask(task)">
+            <span>COMPLETED!</span>
+          </mat-slide-toggle>
+          <button mat-button color="warn" [routerLink]="['/tasks', task.id]">DETAILS</button>
+          <button mat-button color="warn" (click)="removeTask(task)">REMOVE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="showPendingTasks && !task.completed">
+    <div [@cardCreationAnimation]>
+      <mat-card [@cardToggleAnimation]="task.completed.toString()">
+        <span [appDot]="task.priority" class="tooltip">{{ getPriorityMarkers(task.priority) }}</span>
+        <span class="tooltiptext">PRIORITY</span>
+        <mat-card-header>
+          <mat-card-title>{{ task.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions>
+          <mat-slide-toggle color="warn" [(ngModel)]="task.completed" (change)="updateTask(task)">
+            <span>NOT COMPLETED!</span>
+          </mat-slide-toggle>
+          <button mat-button color="warn" [routerLink]="['/tasks', task.id]">DETAILS</button>
+          <button mat-button color="warn" (click)="removeTask(task)">REMOVE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </ng-container>
+</div>
+<div class="total">
+  <p>Total tasks: {{ totalTasks }}</p>
+  <p>Completed tasks: {{ completedTasks }}</p>
+</div>
